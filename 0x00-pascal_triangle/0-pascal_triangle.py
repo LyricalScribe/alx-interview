@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Function to create Pascal triangle"""
+""" Function to create Pascal triangle """
 
 
 def pascal_triangle(n):
-    """creation of pascal's triangle"""
+    """ Creates Pascal triangle """
     if n <= 0:
         return []
     if n == 1:
