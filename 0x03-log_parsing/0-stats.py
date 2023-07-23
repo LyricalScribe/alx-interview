@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" script that reads stdin line by line and computes metrics """
+"""script that reads stdin line by line and computes metrics """
 
 if __name__ == '__main__':
 
@@ -28,12 +28,12 @@ if __name__ == '__main__':
         """Read stdin per line"""
         for line in sys.stdin:
             if counter != 0 and counter == 10:
-                """After every 10 lines, print from the beginning"""
+                """print from the beginning after every 10 lines"""
                 print_results(Codes, fileSize)
             counter += 1
             data = line.split()
             try:
-                """Compute metrics"""
+                """Calculate metrics"""
                 Code = data[-2]
                 if Code in Codes:
                     Codes[Code] += 1
@@ -43,11 +43,5 @@ if __name__ == '__main__':
         print_results(Codes, fileSize)
     except KeyboardInterrupt:
         """Keyboard interruption, print from the beginning"""
-        print_results(  def print_results(Codes, fileSize):
-        """ Print statistics """
-        print("File size: {:d}".format(fileSize))
-        for Code, times in sorted(Codes.items()):
-            if times:
-                print("{:s}: {:d}".format(Code, times))Codes, fileSize)
+        print_results(Codes, fileSize)
         raise
-
