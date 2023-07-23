@@ -1,49 +1,53 @@
 #!/usr/bin/python3
-"""
-log parsing in python
-"""
+""" script that reads stdin line by line and computes metrics """
 
-import sys
-import re
+if __name__ == '__main__':
 
-def output(log: dict) -> None:
-    """
-    displays stats
-    """
-    print("File size: {}".format(log["file_size"]))
-    for code in sorted(log["code_frequency"]):
-        if log["code_frequency"][code]:
-            print("{}: {}".format(code, log["code_frequency"][code]))
+    import sys
 
-if __name__ == "__main__":
-    regex = re.compile(r'(\d{3}) (\d+)')
+    Codes = {"200": 0,
+                   "301": 0,
+                   "400": 0,
+                   "401": 0,
+                   "403": 0,
+                   "404": 0,
+                   "405": 0,
+                   "500": 0
+                   }
+    fileSize = 0
+    counter = 0
 
-    line_count = 0
-    log = {
-        "file_size": 0,
-        "code_frequency": {
-            str(code): 0 for code in [200, 301, 400, 401, 403, 404, 405, 500]
-        }
-    }
 
+    def print_results(Codes, fileSize):
+        """Print values"""
+        print("File size: {:d}".format(fileSize))
+        for Code, times in sorted (Codes.items()):
+            if times:
+                print("{:s}: {:d}".format(Code, times))
     try:
+        """Read stdin per line"""
         for line in sys.stdin:
-            line = line.strip()
-            match = regex.match(line)
-            if match:
-                line_count += 1
-                code, file_size = match.groups()
-                file_size = int(file_size)
-
-                # File size
-                log["file_size"] += file_size
-
-                # status code
-                if code.isdigit():
-                    log["code_frequency"][code] += 1
-
-                if line_count % 10 == 0:
-                    output(log)
-    finally:
-        output(log)
+            if counter != 0 and counter == 10:
+                """After every 10 lines, print from the beginning"""
+                print_results(Codes, fileSize)
+            counter += 1
+            data = line.split()
+            try:
+                """Compute metrics"""
+                Code = data[-2]
+                if Code in Codes:
+                    Codes[Code] += 1
+                fileSize += int(data[-1])
+            except:
+                pass
+        print_results(Codes, fileSize)
+    except KeyboardInterrupt:
+        """Keyboard interruption, print from the beginning"""
+        print_results(  def print_results(Codes, fileSize):
+        """ Print statistics """
+        print("File size: {:d}".format(fileSize))
+        for Code, times in sorted(Codes.items()):
+            if times:
+                print("{:s}: {:d}".format(Code, times))Codes, fileSize)
+        raise
 
