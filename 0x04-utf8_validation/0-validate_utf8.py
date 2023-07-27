@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-determines if a given data set 
+determines if a given data set
 is a valid UTF-8 encoding
 """
 
