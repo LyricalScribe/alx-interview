@@ -6,6 +6,9 @@ is a valid UTF-8 encoding
 
 
 def validUTF8(data):
+    """
+    data represented by a list of integers
+    """
     count = 0
     for num in data:
         if count == 0:
