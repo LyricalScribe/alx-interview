@@ -1,12 +1,12 @@
 #!/usr/bin/node
-//Prints all characters of a Star Wars movie
+// Prints all characters of a Star Wars movie
 
 const request = require('request');
 
 const movieId = process.argv[2];
 const movieEndpoint = 'https://swapi-api.alx-tools.com/api/films/' + movieId;
 
-function fetchCharacters(characterNames, index) {
+function fetchCharacters (characterNames, index) {
   if (characterNames.length === index) {
     return;
   }
