@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Calculate island perimeter"""
 
+
 def island_perimeter(grid):
     """Calculate perimeter"""
     perimeter = 0
